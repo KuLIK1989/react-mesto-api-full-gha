@@ -17,6 +17,8 @@ const { ERROR_SERVER } = require('./utils/errors/constants');
 // const NotUsersFound = require('./utils/errors/NotUsersFound');
 const NotFoundError = require('./utils/errors/NotFoundError');
 // eslint-disable-next-line no-console
+const { requestLogger, errorLogger } = require('./midlewares/logger');
+
 const app = express();
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
@@ -27,6 +29,8 @@ const limiter = rateLimit({
 app.use(limiter);
 app.use(express.json());
 app.use(bodyParser.json());
+
+app.use(requestLogger);
 
 app.post(
   '/signup',
@@ -66,7 +70,7 @@ app.use('/cards', auth, cardsRouter);
 app.use('*', auth, (req, res, next) => {
   next(new NotFoundError('Запрашиваемая страница не найдена'));
 });
-
+app.use(errorLogger);
 app.use(errors());
 
 app.use((err, req, res, next) => {
