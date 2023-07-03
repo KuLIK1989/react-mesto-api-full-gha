@@ -1,0 +1,18 @@
+.card__button-trash {
+   background-image: url(../../../image/card/Group__tresh.svg);
+   background-color: transparent;
+   background-size: contain;
+   width: 18px;
+   height: 19px;
+   border: none;
+   position: absolute;
+   top: 20px;
+   right: 20px;
+   cursor: pointer;
+   visibility: hidden;
+
+}
+
+.card__button-trash:hover {
+   opacity: 0.8;
+}

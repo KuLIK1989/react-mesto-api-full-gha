@@ -1,0 +1,17 @@
+.card__button-like_active {
+   background-image: url(../../../../image/card/Union__black-like.svg);
+   background-color: transparent;
+   background-size: contain;
+   background-position: center;
+   width: 22px;
+   height: 19px;
+   cursor: pointer;
+   border: 0;
+   padding: 0;
+   background-repeat: no-repeat;
+   flex-shrink: 0;
+}
+
+.card__button-like:hover {
+   opacity: 0.8;
+}

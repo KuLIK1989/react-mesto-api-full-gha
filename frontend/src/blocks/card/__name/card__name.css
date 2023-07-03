@@ -1,0 +1,14 @@
+.card__name {
+   display: flex;
+   max-width: 246px;
+   flex-direction: column;
+   /* justify-content: space-between; */
+   /* margin: 25px 15px 25px 21px; */
+   align-items: center;
+}
+
+/* @media screen and (max-width:768px) {
+   .card__name {
+      /* margin: 25px 22px 25px 21px; */
+/* }
+} */
