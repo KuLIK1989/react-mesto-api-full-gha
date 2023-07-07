@@ -11,6 +11,7 @@ const ConflictRequest = require('../utils/errors/ConflictRequest');
 const BadRequestError = require('../utils/errors/BadRequestError');
 const { SUCCESS, BASE_ERROR, CREATED } = require('../utils/errors/constants');
 
+const { NODE_ENV, JWT_SECRET } = process.env;
 const login = (req, res, next) => {
   const { email, password } = req.body;
   User.findOne({ email }).select('+password')
@@ -22,8 +23,8 @@ const login = (req, res, next) => {
       throw new NotFoundError('Неправильная почта или пароль');
     }))
     .then((user) => {
-      const jwt = jsonwebtoken.sign({ _id: user._id }, 'some-secret-key', { expiresIn: '7d' });
-      res.send({ jwt });
+      const token = jsonwebtoken.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'some-secret-key', { expiresIn: '7d' });
+      res.send({ token });
     })
     .catch(next);
 };
@@ -34,7 +35,7 @@ const getCurrentUser = (req, res, next) => {
 };
 
 const getUsers = (req, res, next) => User.find({})
-  .then((users) => res.status(SUCCESS).send({ data: users }))
+  .then((users) => res.status(SUCCESS).send(users))
   .catch(next);
 
 const getUsersId = (req, res, next) => User.findById(req.params.userId)

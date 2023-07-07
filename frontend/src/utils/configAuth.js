@@ -1,5 +1,5 @@
 const configAuth = {
-  baseUrl: "https://auth.nomoreparties.co",
+  baseUrl: "http://localhost:3001",
   headers: {
     Accept: "application/json",
     "Content-Type": "application/json",

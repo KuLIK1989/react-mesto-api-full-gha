@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const bodyParser = require('body-parser');
 const { celebrate, Joi } = require('celebrate');
 const { errors } = require('celebrate');
@@ -12,7 +13,7 @@ const auth = require('./midlewares/auth');
 // const NotFoundError = require('./utils/errors/NotFoundError');
 // eslint-disable-next-line no-unused-vars
 
-const { PORT = 3000 } = process.env;
+const { PORT = 3001 } = process.env;
 const { ERROR_SERVER } = require('./utils/errors/constants');
 // const NotUsersFound = require('./utils/errors/NotUsersFound');
 const NotFoundError = require('./utils/errors/NotFoundError');
@@ -20,6 +21,7 @@ const NotFoundError = require('./utils/errors/NotFoundError');
 const { requestLogger, errorLogger } = require('./midlewares/logger');
 
 const app = express();
+app.use(cors());
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 100,

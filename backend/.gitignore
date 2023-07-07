@@ -2,7 +2,12 @@
 logs
 *.log
 npm-debug.log*
-
+# misc
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env
 # Dependency directory
 node_modules
 
